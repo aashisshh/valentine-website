@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal for Pranjal</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFB6C1, #FFF0F5);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: all 0.5s ease;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            font-size: 2.5em;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+        button {
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        button:hover {
+            background: #FF1493;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #FF69B4;
+            font-size: 2em;
+            animation: float 6s linear infinite;
+        }
+        .heart:nth-child(odd) { animation-delay: -2s; }
+        .heart:nth-child(even) { animation-delay: -4s; }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Celebration Animation */
+        .celebration {
+            position: relative;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FF69B4;
+            animation: confettiFall 3s linear infinite;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Music Controls */
+        #music-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        #music-controls button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #FF69B4;
+            border: 1px solid #FF69B4;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1, h2 { font-size: 2em; }
+            button { padding: 10px 20px; font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Music Controls -->
+    <div id="music-controls">
+        <button id="play-music">Play Music 🎵</button>
+        <button id="mute-music" class="hidden">Mute</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="C:\Users\aashi\Downloads\_Kadhi_Tu_Instrumental.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
+
+    <!-- Landing Screen -->
+    <section id="landing" class="container fade-in">
+        <h1>Hey Kukku ❤️ I made something for you</h1>
+        <p>Take a moment to feel the love...</p>
+        <button id="start-btn">Click Here to Start 💕</button>
+    </section>
+
+    <!-- Question Section -->
+    <section id="question" class="container hidden fade-in">
+        <h2>Will you be my Valentine?</h2>
+        <button id="yes-btn">Yes 💖</button>
+        <button id="no-btn">No 😒</button>
+        <p id="tease-text" class="hidden">Oh come on, Baby! Try again! 😘</p>
+    </section>
+
+    <!-- Yes Response Page -->
+    <section id="yes-response" class="container hidden fade-in celebration">
+        <h2>Yay! Kukkie said Yes! 💖</h2>
+        <p>Rani, you make my heart skip a beat every day. Your smile lights up my world, and I cherish every moment with you. Happy Valentine's Day, my love!</p>
+        <p>Here's a little photo to remind you of our adventures:</p>
+        <img src="C:\Users\aashi\OneDrive\Desktop\Valentine-website\US.jpeg" alt="A sweet photo of us" style="max-width: 300px; border-radius: 10px; margin: 20px 0;">
+        <p><strong>No matter what, I choose you. Always. ❤️</strong></p>
+        <!-- Confetti Animation -->
+        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="confetti" style="left: 20%; animation-delay: 0.5s;"></div>
+        <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="confetti" style="left: 40%; animation-delay: 1.5s;"></div>
+        <div class="confetti" style="left: 50%; animation-delay: 2s;"></div>
+    </section>
+
+    <script>
+        // Music Controls
+        const music = document.getElementById('bg-music');
+        const playBtn = document.getElementById('play-music');
+        const muteBtn = document.getElementById('mute-music');
+
+        playBtn.addEventListener('click', () => {
+            music.play();
+            playBtn.classList.add('hidden');
+            muteBtn.classList.remove('hidden');
+        });
+
+        muteBtn.addEventListener('click', () => {
+            music.pause();
+            muteBtn.classList.add('hidden');
+            playBtn.classList.remove('hidden');
+        });
+
+        // Section Transitions
+        const landing = document.getElementById('landing');
+        const question = document.getElementById('question');
+        const yesResponse = document.getElementById('yes-response');
+        const startBtn = document.getElementById('start-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const teaseText = document.getElementById('tease-text');
+
+        startBtn.addEventListener('click', () => {
+            landing.classList.add('hidden');
+            question.classList.remove('hidden');
+        });
+
+        // No Button Teasing
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            noBtn.style.transform = 'scale(0.8)';
+            teaseText.classList.remove('hidden');
+            setTimeout(() => teaseText.classList.add('hidden'), 2000);
+        });
+
+        noBtn.addEventListener('click', () => {
+            noBtn.style.transform = 'scale(0.5)';
+            teaseText.classList.remove('hidden');
+            setTimeout(() => teaseText.classList.add('hidden'), 2000);
+        });
+
+        // Yes Button
+        yesBtn.addEventListener('click', () => {
+            question.classList.add('hidden');
+            yesResponse.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
