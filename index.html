@@ -1,199 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal for Pranjal</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFB6C1, #FFF0F5);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: all 0.5s ease;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            font-size: 2.5em;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+        button {
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        button:hover {
+            background: #FF1493;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-<style>
-*{box-sizing:border-box}
+        /* Floating Hearts Animation */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #FF69B4;
+            font-size: 2em;
+            animation: float 6s linear infinite;
+        }
+        .heart:nth-child(odd) { animation-delay: -2s; }
+        .heart:nth-child(even) { animation-delay: -4s; }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
 
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ffb6c1,#fff0f5);
-  overflow-x:hidden;
-  text-align:center;
-}
+        /* Celebration Animation */
+        .celebration {
+            position: relative;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FF69B4;
+            animation: confettiFall 3s linear infinite;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
 
-/* Containers */
-.container{
-  max-width:800px;
-  margin:auto;
-  padding:30px 15px;
-}
+        /* Music Controls */
+        #music-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        #music-controls button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #FF69B4;
+            border: 1px solid #FF69B4;
+        }
 
-/* Text */
-h1,h2{
-  color:#ff4f9a;
-}
-p{
-  color:#444;
-  font-size:1.1em;
-}
-
-/* Buttons */
-button{
-  background:#ff69b4;
-  color:#fff;
-  border:none;
-  padding:14px 28px;
-  border-radius:40px;
-  font-size:1.1em;
-  cursor:pointer;
-  transition:0.3s;
-}
-button:hover{
-  transform:scale(1.1);
-  background:#ff1493;
-}
-.hidden{display:none}
-
-/* Fade + Pop animations */
-.fade{
-  animation:fade 1s ease;
-}
-.pop{
-  animation:pop 0.8s ease forwards;
-}
-@keyframes fade{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-@keyframes pop{
-  0%{transform:scale(0.7);opacity:0}
-  70%{transform:scale(1.1)}
-  100%{transform:scale(1);opacity:1}
-}
-
-/* Floating Hearts */
-.hearts span{
-  position:fixed;
-  bottom:-50px;
-  font-size:24px;
-  animation:float 6s linear infinite;
-  opacity:0.7;
-}
-@keyframes float{
-  to{
-    transform:translateY(-110vh) rotate(360deg);
-    opacity:0;
-  }
-}
-
-/* Confetti */
-.confetti{
-  position:fixed;
-  width:8px;
-  height:14px;
-  background:#ff69b4;
-  top:-20px;
-  animation:confetti 3s linear infinite;
-}
-@keyframes confetti{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-  }
-}
-
-/* Image */
-img{
-  max-width:90%;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* Mobile tweaks */
-@media(max-width:600px){
-  h1,h2{font-size:1.8em}
-  p{font-size:1em}
-}
-</style>
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1, h2 { font-size: 2em; }
+            button { padding: 10px 20px; font-size: 1em; }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Music Controls -->
+    <div id="music-controls">
+        <button id="play-music">Play Music 🎵</button>
+        <button id="mute-music" class="hidden">Mute</button>
+    </div>
+    <audio id="bg-music" loop muted playsinline>
+        <source src="love.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- Music -->
-<audio id="bg-music" loop>
-  <source src="love.mp3" type="audio/mpeg">
-</audio>
+    <!-- Floating Hearts Background -->
+    <div class="hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
 
-<!-- Floating Hearts -->
-<div class="hearts" id="hearts"></div>
+    <!-- Landing Screen -->
+    <section id="landing" class="container fade-in">
+        <h1>Hey Kukku ❤️ I made something for you</h1>
+        <p>Take a moment to feel the love...</p>
+        <button id="start-btn">Click Here to Start 💕</button>
+    </section>
 
-<!-- Start -->
-<section id="landing" class="container fade">
-  <h1>Hey Kukku ❤️</h1>
-  <p>I made something special for you…</p>
-  <button id="startBtn">Start 💕</button>
-</section>
+    <!-- Question Section -->
+    <section id="question" class="container hidden fade-in">
+        <h2>Will you be my Valentine?</h2>
+        <button id="yes-btn">Yes 💖</button>
+        <button id="no-btn">No 😒</button>
+        <p id="tease-text" class="hidden">Oh come on, Baby! Try again! 😘</p>
+    </section>
 
-<!-- Question -->
-<section id="question" class="container hidden fade">
-  <h2>Will you be my Valentine? 💖</h2>
-  <button id="yesBtn">YES 😍</button>
-</section>
+    <!-- Yes Response Page -->
+    <section id="yes-response" class="container hidden fade-in celebration">
+        <h2>Yay! Kukkie said Yes! 💖</h2>
+        <p>Rani, you make my heart skip a beat every day. Your smile lights up my world, and I cherish every moment with you. Happy Valentine's Day, my love!</p>
+        <p>Here's a little photo to remind you of our adventures:</p>
+        <img src="US.jpeg" alt="A sweet photo of us" style="max-width: 300px; border-radius: 10px; margin: 20px 0;">
+        <p><strong>No matter what, I choose you. Always. ❤️</strong></p>
+        <!-- Confetti Animation -->
+        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="confetti" style="left: 20%; animation-delay: 0.5s;"></div>
+        <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
+        <div class="confetti" style="left: 40%; animation-delay: 1.5s;"></div>
+        <div class="confetti" style="left: 50%; animation-delay: 2s;"></div>
+    </section>
 
-<!-- Final -->
-<section id="final" class="container hidden pop">
-  <h2>Yay! You said YES 💘</h2>
-  <p>
-    Rani, you are my favourite person, my safe place,  
-    and my forever choice 🥹❤️
-  </p>
+    <script>
+        const music = document.getElementById("bg-music");
+        document.addEventListener("click", () => {
+            music.muted = false;
+            music.volume = 0.8;
+            music.play().catch(err => console.log("Audio blocked:", err));
+        }, { once: true });
 
-  <img src="US.jpeg" alt="Us 💑">
+        const landing = document.getElementById('landing');
+        const question = document.getElementById('question');
+        const yesResponse = document.getElementById('yes-response');
+        const startBtn = document.getElementById('start-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const teaseText = document.getElementById('tease-text');
 
-  <h3 class="pop">I choose you. Always. 🌸</h3>
-</section>
+        startBtn.addEventListener('click', () => {
+            landing.classList.add('hidden');
+            question.classList.remove('hidden');
+        });
 
-<script>
-const music=document.getElementById("bg-music");
-const startBtn=document.getElementById("startBtn");
-const yesBtn=document.getElementById("yesBtn");
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            noBtn.style.transform = 'scale(0.8)';
+            teaseText.classList.remove('hidden');
+            setTimeout(() => teaseText.classList.add('hidden'), 2000);
+        });
 
-const landing=document.getElementById("landing");
-const question=document.getElementById("question");
-const final=document.getElementById("final");
+        noBtn.addEventListener('click', () => {
+            noBtn.style.transform = 'scale(0.5)';
+            teaseText.classList.remove('hidden');
+            setTimeout(() => teaseText.classList.add('hidden'), 2000);
+        });
 
-/* Start */
-startBtn.onclick=()=>{
-  music.play();
-  landing.classList.add("hidden");
-  question.classList.remove("hidden");
-};
-
-/* Yes */
-yesBtn.onclick=()=>{
-  question.classList.add("hidden");
-  final.classList.remove("hidden");
-  launchHearts();
-  launchConfetti();
-};
-
-/* Hearts generator */
-function launchHearts(){
-  const wrap=document.getElementById("hearts");
-  for(let i=0;i<20;i++){
-    const h=document.createElement("span");
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=4+Math.random()*3+"s";
-    wrap.appendChild(h);
-  }
-}
-
-/* Confetti generator */
-function launchConfetti(){
-  for(let i=0;i<30;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=["#ff69b4","#ffd1dc","#ff1493"][Math.floor(Math.random()*3)];
-    document.body.appendChild(c);
-  }
-}
-</script>
-
+        yesBtn.addEventListener('click', () => {
+            question.classList.add('hidden');
+            yesResponse.classList.remove('hidden');
+        });
+    </script>
 </body>
+
 </html>
