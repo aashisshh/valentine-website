@@ -168,15 +168,13 @@
     </section>
 
     <script>
-        // Music Controls
         const music = document.getElementById("bg-music");
         document.addEventListener("click", () => {
             music.muted = false;
             music.volume = 0.8;
-            music.play();
+            music.play().catch(err => console.log("Audio blocked:", err));
         }, { once: true });
 
-        // Section Transitions
         const landing = document.getElementById('landing');
         const question = document.getElementById('question');
         const yesResponse = document.getElementById('yes-response');
@@ -190,7 +188,6 @@
             question.classList.remove('hidden');
         });
 
-        // No Button Teasing
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 100);
@@ -208,7 +205,6 @@
             setTimeout(() => teaseText.classList.add('hidden'), 2000);
         });
 
-        // Yes Button
         yesBtn.addEventListener('click', () => {
             question.classList.add('hidden');
             yesResponse.classList.remove('hidden');
@@ -217,5 +213,6 @@
 </body>
 
 </html>
+
 
 
