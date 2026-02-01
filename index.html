@@ -169,21 +169,12 @@
 
     <script>
         // Music Controls
-        const music = document.getElementById('bg-music');
-        const playBtn = document.getElementById('play-music');
-        const muteBtn = document.getElementById('mute-music');
-
-        playBtn.addEventListener('click', () => {
+        const music = document.getElementById("bg-music");
+        document.addEventListener("click", () => {
+            music.muted = false;
+            music.volume = 0.8;
             music.play();
-            playBtn.classList.add('hidden');
-            muteBtn.classList.remove('hidden');
-        });
-
-        muteBtn.addEventListener('click', () => {
-            music.pause();
-            muteBtn.classList.add('hidden');
-            playBtn.classList.remove('hidden');
-        });
+        }, { once: true });
 
         // Section Transitions
         const landing = document.getElementById('landing');
